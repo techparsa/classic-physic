@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فیزیک کلاسیک | قوانین نیوتن | آکادمی فیزیک</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- MathJax for mathematical formulas -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles (مشابه صفحه اصلی) */
+        .top-bar {
+            background-color: #1a237e;
+            color: white;
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-info span {
+            margin-left: 20px;
+        }
+
+        .contact-info i {
+            margin-left: 5px;
+        }
+
+        .social-icons a {
+            color: white;
+            margin-right: 15px;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .social-icons a:hover {
+            opacity: 0.8;
+        }
+
+        .main-header {
+            background: linear-gradient(135deg, #283593 0%, #3949ab 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 5px;
+        }
+
+        .logo p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .logo a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .search-box {
+            display: flex;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            width: 300px;
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            padding: 10px 15px;
+            outline: none;
+            font-size: 0.95rem;
+        }
+
+        .search-box button {
+            background: #ffb74d;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-box button:hover {
+            background: #ffa726;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 15px 25px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #1a237e;
+            border-bottom-color: #1a237e;
+            background-color: #f5f5f5;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><circle cx="50" cy="50" r="40" stroke="white" stroke-width="2" fill="none"/><circle cx="50" cy="50" r="20" stroke="white" stroke-width="2" fill="none"/><line x1="10" y1="10" x2="90" y2="90" stroke="white" stroke-width="2"/><line x1="90" y1="10" x2="10" y2="90" stroke="white" stroke-width="2"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .breadcrumb {
+            margin-top: 20px;
+        }
+
+        .breadcrumb a {
+            color: #ffb74d;
+            text-decoration: none;
+        }
+
+        .breadcrumb span {
+            color: white;
+            margin: 0 10px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #1a237e;
+            margin-bottom: 40px;
+            font-weight: 300;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80px;
+            height: 3px;
+            background: #ffb74d;
+        }
+
+        .section-title.centered {
+            text-align: center;
+        }
+
+        .section-title.centered::after {
+            right: 50%;
+            transform: translateX(50%);
+        }
+
+        /* Newton Introduction */
+        .newton-bio {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            align-items: start;
+            margin-bottom: 60px;
+        }
+
+        .newton-image {
+            background: linear-gradient(135deg, #1a237e, #283593);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .newton-image i {
+            font-size: 8rem;
+            margin-bottom: 20px;
+        }
+
+        .newton-image h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .newton-image .lifespan {
+            color: #ffb74d;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .newton-bio-text h2 {
+            font-size: 2.2rem;
+            color: #1a237e;
+            margin-bottom: 20px;
+        }
+
+        .newton-bio-text p {
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .highlight-box {
+            background-color: #e8eaf6;
+            border-right: 5px solid #ffb74d;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* Laws Cards */
+        .laws-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .law-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .law-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .law-header {
+            background: linear-gradient(135deg, #1a237e, #283593);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .law-header i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .law-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .law-content {
+            padding: 30px;
+        }
+
+        .law-formula {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.3rem;
+            direction: ltr;
+        }
+
+        .law-example {
+            background-color: #fff8e1;
+            padding: 15px;
+            border-radius: 8px;
+            border-right: 4px solid #ffb74d;
+            margin-top: 20px;
+        }
+
+        /* Gravitation Section */
+        .gravitation-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eaf6 100%);
+            padding: 60px;
+            border-radius: 20px;
+            margin: 60px 0;
+        }
+
+        .gravitation-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .gravitation-text {
+            font-size: 1.1rem;
+        }
+
+        .gravitation-formula {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .gravitation-formula .formula {
+            font-size: 2.5rem;
+            color: #1a237e;
+            margin: 20px 0;
+            direction: ltr;
+        }
+
+        .formula-variables {
+            text-align: right;
+            margin-top: 20px;
+            color: #555;
+        }
+
+        .formula-variables p {
+            margin: 10px 0;
+        }
+
+        .formula-variables i {
+            color: #ffb74d;
+            margin-left: 10px;
+        }
+
+        /* Integration Section */
+        .integration-section {
+            margin: 60px 0;
+        }
+
+        .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .integration-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e0e0e0;
+        }
+
+        .integration-card h4 {
+            color: #1a237e;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .integration-card h4 i {
+            color: #ffb74d;
+        }
+
+        .integration-formula {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            direction: ltr;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            margin: 60px 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 50%;
+            transform: translateX(50%);
+            width: 4px;
+            height: 100%;
+            background: #ffb74d;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .timeline-year {
+            position: absolute;
+            right: 50%;
+            transform: translateX(50%);
+            background: #1a237e;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            top: 0;
+        }
+
+        /* Interactive Examples */
+        .interactive-box {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 2px solid #e8eaf6;
+        }
+
+        .problem-solver {
+            background: #f5f7fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #1a237e;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #ffb74d;
+        }
+
+        .btn-calculate {
+            background: #1a237e;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-calculate:hover {
+            background: #283593;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(26,35,126,0.3);
+        }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 20px;
+            background: #e8eaf6;
+            border-radius: 8px;
+            font-size: 1.2rem;
+        }
+
+        /* Footer (مشابه صفحه اصلی) */
+        footer {
+            background-color: #0d1642;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h4::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background: #ffb74d;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #b0bec5;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-section p {
+            color: #b0bec5;
+            margin-bottom: 10px;
+        }
+
+        .footer-section i {
+            margin-left: 10px;
+            color: #ffb74d;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #b0bec5;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                margin-bottom: 15px;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .newton-bio {
+                grid-template-columns: 1fr;
+            }
+
+            .gravitation-content {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                right: 30px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                flex-direction: column;
+                margin-right: 60px;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .timeline-year {
+                right: 30px;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <span><i class="fas fa-phone"></i> </span>
+                <span><i class="fas fa-envelope"></i> </span>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html" style="color: white;">
+                    <h1>آکادمی فیزیک</h1>
+                    <p>دانش بنیادین هستی</p>
+                </a>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="جستجوی مفاهیم، فیزیکدانان، مقالات...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">صفحه اصلی</a></li>
+                <li><a href="#" class="active">فیزیک کلاسیک</a></li>
+                <li><a href="#">فیزیک مدرن</a></li>
+                <li><a href="#">فیزیکدانان</a></li>
+                <li><a href="#">مقالات</a></li>
+                <li><a href="#">ویدئوها</a></li>
+                <li><a href="#">آزمایشگاه مجازی</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>فیزیک کلاسیک</h1>
+            <p>از قوانین حرکت نیوتن تا تسلط بر محاسبات انتگرالی</p>
+            <div class="breadcrumb">
+                <a href="index.html">صفحه اصلی</a>
+                <span>></span>
+                <span>فیزیک کلاسیک</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Newton Biography Section -->
+            <section>
+                <h2 class="section-title">سر آیزاک نیوتن: معمار فیزیک کلاسیک</h2>
+                <div class="newton-bio">
+                    <div class="newton-image">
+                        <i class="fas fa-user-tie"></i>
+                        <h3>آیزاک نیوتن</h3>
+                        <div class="lifespan">۱۶۴۳ - ۱۷۲۷</div>
+                        <p>"آنچه می‌دانیم یک قطره است، آنچه نمی‌دانیم اقیانوسی بیکران."</p>
+                    </div>
+                    <div class="newton-bio-text">
+                        <p>سر آیزاک نیوتن، فیزیکدان، ریاضیدان، اخترشناس و فیلسوف طبیعی انگلیسی، به عنوان یکی از تأثیرگذارترین دانشمندان تاریخ شناخته می‌شود. کتاب او "Principia Mathematica" که در سال ۱۶۸۷ منتشر شد، پایه‌های مکانیک کلاسیک را بنا نهاد و برای بیش از سه قرن به عنوان بنیادی‌ترین متن فیزیک باقی ماند.</p>
+                        <p>نیوتن با ارائه قوانین سه‌گانه حرکت و قانون جهانی گرانش، توانست حرکت اجرام آسمانی و زمینی را در یک چارچوب واحد توصیف کند. او هم‌زمان با گوتفرید لایب‌نیتس، حسابان را اختراع کرد که ابزار ریاضی ضروری برای فیزیک نظری است.</p>
+                        <div class="highlight-box">
+                            <i class="fas fa-star" style="color: #ffb74d; margin-left: 10px;"></i>
+                            <strong>کشفیات مهم:</strong> قوانین حرکت، گرانش جهانی، حساب دیفرانسیل و انتگرال، ماهیت نور و رنگ‌ها
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Three Laws Section -->
+            <section>
+                <h2 class="section-title">قوانین سه‌گانه حرکت نیوتن</h2>
+                <div class="laws-grid">
+                    <!-- First Law -->
+                    <div class="law-card">
+                        <div class="law-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <h3>قانون اول</h3>
+                            <p>قانون لختی</p>
+                        </div>
+                        <div class="law-content">
+                            <p>هر جسم در حالت سکون یا حرکت یکنواخت بر خط راست می‌ماند مگر آنکه نیرویی خارجی آن را وادار به تغییر حالت کند.</p>
+                            <div class="law-formula">
+                                \[ \sum \vec{F} = 0 \Rightarrow \vec{v} = \text{ثابت} \]
+                            </div>
+                            <div class="law-example">
+                                <i class="fas fa-lightbulb" style="color: #ffb74d; margin-left: 10px;"></i>
+                                <strong>مثال:</strong> کتابی روی میز تا زمانی که نیرویی به آن وارد نشود، ساکن می‌ماند.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Second Law -->
+                    <div class="law-card">
+                        <div class="law-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <i class="fas fa-arrow-right"></i>
+                            <h3>قانون دوم</h3>
+                            <p>قانون نیرو و شتاب</p>
+                        </div>
+                        <div class="law-content">
+                            <p>نیروی وارد بر جسم برابر است با آهنگ تغییر تکانه جسم. در جرم ثابت، نیرو برابر است با جرم ضرب در شتاب.</p>
+                            <div class="law-formula">
+                                \[ \vec{F} = m\vec{a} = \frac{d\vec{p}}{dt} \]
+                            </div>
+                            <div class="law-example">
+                                <i class="fas fa-lightbulb" style="color: #ffb74d; margin-left: 10px;"></i>
+                                <strong>مثال:</strong> هرچه نیروی بیشتری به توپ فوتبال وارد کنید، شتاب بیشتری می‌گیرد.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Third Law -->
+                    <div class="law-card">
+                        <div class="law-header">
+                            <i class="fas fa-exchange-alt"></i>
+                            <h3>قانون سوم</h3>
+                            <p>قانون عمل و عکس‌العمل</p>
+                        </div>
+                        <div class="law-content">
+                            <p>هر عملی را عکس‌العملی است مساوی و در خلاف جهت. یعنی وقتی دو جسم به هم نیرو وارد می‌کنند، این نیروها هم‌اندازه و در خلاف جهت‌اند.</p>
+                            <div class="law-formula">
+                                \[ \vec{F}_{12} = -\vec{F}_{21} \]
+                            </div>
+                            <div class="law-example">
+                                <i class="fas fa-lightbulb" style="color: #ffb74d; margin-left: 10px;"></i>
+                                <strong>مثال:</strong> وقتی روی زمین راه می‌روید، پاهای شما به زمین نیرو وارد می‌کند و زمین نیز به شما نیرو وارد می‌کند.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Universal Gravitation -->
+            <section class="gravitation-section">
+                <h2 class="section-title centered">قانون جهانی گرانش نیوتن</h2>
+                <div class="gravitation-content">
+                    <div class="gravitation-text">
+                        <p>نیوتن در سال ۱۶۸۷ قانون جهانی گرانش را منتشر کرد که بیان می‌کند هر دو ذره در جهان، یکدیگر را با نیرویی که با حاصلضرب جرم‌هایشان نسبت مستقیم و با مجذور فاصله‌شان نسبت وارون دارد، جذب می‌کنند.</p>
+                        <p>این قانون توانست حرکت سیارات به دور خورشید، حرکت ماه به دور زمین و سقوط اجسام بر روی زمین را در یک چارچوب واحد توضیح دهد. نیوتن نشان داد که نیرویی که سیب را به سمت زمین می‌کشد، همان نیرویی است که ماه را در مدار خود نگه می‌دارد.</p>
+                        <div class="highlight-box" style="margin-top: 20px;">
+                            <i class="fas fa-apple-alt" style="color: #ffb74d; margin-left: 10px;"></i>
+                            <strong>داستان معروف:</strong> گفته می‌شود نیوتن با دیدن سقوط یک سیب از درخت، به فکر نیروی گرانش افتاد.
+                        </div>
+                    </div>
+                    <div class="gravitation-formula">
+                        <h3>فرمول ریاضی</h3>
+                        <div class="formula">
+                            \[ F = G\frac{m_1 m_2}{r^2} \]
+                        </div>
+                        <div class="formula-variables">
+                            <p><i class="fas fa-arrow-left"></i> F = نیروی گرانش</p>
+                            <p><i class="fas fa-arrow-left"></i> G = ثابت گرانش</p>
+                            <p><i class="fas fa-arrow-left"></i> m₁, m₂ = جرم دو جسم</p>
+                            <p><i class="fas fa-arrow-left"></i> r = فاصله بین دو جسم</p>
+                        </div>
+                        <p style="margin-top: 20px; font-size: 0.9rem; color: #666;">
+                            مقدار G = ۶.۶۷ × ۱۰⁻¹¹ N·m²/kg²
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Integration in Physics -->
+            <section class="integration-section">
+                <h2 class="section-title">انتگرال‌گیری در فیزیک نیوتنی</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 30px;">نیوتن برای توصیف پدیده‌های پیوسته و محاسبه کمیت‌های فیزیکی، حسابان را توسعه داد. انتگرال‌گیری ابزاری ضروری برای:</p>
+                
+                <div class="integration-grid">
+                    <div class="integration-card">
+                        <h4><i class="fas fa-road"></i> محاسبه مسافت</h4>
+                        <p>با داشتن تابع سرعت، مسافت طی شده از انتگرال سرعت نسبت به زمان به دست می‌آید:</p>
+                        <div class="integration-formula">
+                            \[ s = \int_{t_1}^{t_2} v(t) dt \]
+                        </div>
+                        <p>مثال: اگر \( v(t) = 3t^2 \)، مسافت بین t=0 تا t=2 برابر ۸ متر است.</p>
+                    </div>
+
+                    <div class="integration-card">
+                        <h4><i class="fas fa-bolt"></i> کار و انرژی</h4>
+                        <p>کار انجام شده توسط نیروی متغیر برابر انتگرال نیرو بر حسب جابجایی است:</p>
+                        <div class="integration-formula">
+                            \[ W = \int_{x_1}^{x_2} F(x) dx \]
+                        </div>
+                        <p>مثال: کار انجام شده برای کشیدن فنر با نیروی \( F = kx \) برابر \( \frac{1}{2}kx^2 \) است.</p>
+                    </div>
+
+                    <div class="integration-card">
+                        <h4><i class="fas fa-circle"></i> مرکز جرم</h4>
+                        <p>موقعیت مرکز جرم یک جسم ناهمگن با انتگرال‌گیری چگالی بر حجم به دست می‌آید:</p>
+                        <div class="integration-formula">
+                            \[ x_{cm} = \frac{\int x \rho(x) dV}{\int \rho(x) dV} \]
+                        </div>
+                    </div>
+
+                    <div class="integration-card">
+                        <h4><i class="fas fa-globe"></i> گرانش</h4>
+                        <p>محاسبه میدان گرانشی اجسام گسترده نیاز به انتگرال‌گیری روی تمام جرم جسم دارد:</p>
+                        <div class="integration-formula">
+                            \[ \vec{g} = -G \int \frac{dm}{r^2}\hat{r} \]
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Timeline of Newton's Discoveries -->
+            <section>
+                <h2 class="section-title">گاهشمار کشفیات نیوتن</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>سال ۱۶۶۵ - ۱۶۶۶</h4>
+                            <p>سال‌های طاعون: نیوتن به دلیل تعطیلی دانشگاه کمبریج به خانه بازمی‌گردد و در این دو سال پایه‌های حسابان، قوانین حرکت و گرانش را بنا می‌نهد.</p>
+                        </div>
+                        <div class="timeline-year">۱۶۶۵</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>سال ۱۶۶۸</h4>
+                            <p>ساخت تلسکوپ بازتابی که تصاویر واضح‌تری نسبت به تلسکوپ‌های شکستی داشت.</p>
+                        </div>
+                        <div class="timeline-year">۱۶۶۸</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>سال ۱۶۸۷</h4>
+                            <p>انتشار کتاب "Principia Mathematica" که شامل قوانین سه‌گانه حرکت و قانون جهانی گرانش است.</p>
+                        </div>
+                        <div class="timeline-year">۱۶۸۷</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>سال ۱۷۰۴</h4>
+                            <p>انتشار کتاب "Opticks" درباره ماهیت نور و رنگ‌ها.</p>
+                        </div>
+                        <div class="timeline-year">۱۷۰۴</div>
+                    </div>
+                </div>
+            </section>
+
+            
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>درباره ما</h4>
+                    <p>آکادمی فیزیک با هدف ترویج دانش فیزیک و ایجاد پلی بین مفاهیم پایه‌ای و پیشرفته برای علاقه‌مندان به این علم بنیادین تأسیس شده است.</p>
+                 <h1>این سایت توسط محمد جعفر افرازه نوشته شده است</h1>
+                </div>
+                <div class="footer-section">
+                    <h4>دسترسی سریع</h4>
+                    <ul>
+                        <li><a href="#">صفحه اصلی</a></li>
+                        <li><a href="#">فیزیک کلاسیک</a></li>
+                        <li><a href="#">فیزیک مدرن</a></li>
+                        <li><a href="#">فیزیکدانان</a></li>
+                        <li><a href="#">مقالات</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>ارتباط با ما</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> گرمسار</p>
+                    <p><i class="fas fa-phone"></i> telegram ID: @AfrazehW</p>
+                    <p><i class="fas fa-envelope"></i> موجود نیست</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>تمامی حقوق برای آکادمی فیزیک محفوظ است &copy; 2026,1404</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Force Calculator
+        function calculateForce() {
+            const mass = parseFloat(document.getElementById('mass').value);
+            const acceleration = parseFloat(document.getElementById('acceleration').value);
+            
+            if (isNaN(mass) || isNaN(acceleration)) {
+                alert('لطفاً مقادیر معتبر وارد کنید');
+                return;
+            }
+            
+            const force = mass * acceleration;
+            document.getElementById('forceResult').innerHTML = `نیروی وارد بر جسم: ${force.toFixed(2)} نیوتن`;
+        }
+
+        // Show sample solution
+        function showSolution() {
+            const solution = document.getElementById('sampleSolution');
+            if (solution.style.display === 'none') {
+                solution.style.display = 'block';
+            } else {
+                solution.style.display = 'none';
+            }
+        }
+
+        // Initialize with default values
+        document.addEventListener('DOMContentLoaded', function() {
+            calculateForce();
+        });
+    </script>
+
+    <!-- MathJax configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+</body>
+</html>
